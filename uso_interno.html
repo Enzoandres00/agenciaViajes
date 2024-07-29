@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agencia de Viajes</title>
+    <script>
+        function validar_vuelo() {
+            var plazas = document.forms["formVuelo"]["plazas_disponibles"].value;
+            var precio = document.forms["formVuelo"]["precio"].value;
+
+            if (plazas <= 0) {
+                alert("Error");
+                return false;
+            }
+
+            if (precio <= 0) {
+                alert("Error");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validar_hotel() {
+            var habitaciones = document.forms["formHotel"]["habitaciones_disponibles"].value;
+            var tarifa = document.forms["formHotel"]["tarifa_noche"].value;
+
+            if (habitaciones <= 0) {
+                alert("Error");
+                return false;
+            }
+
+            if (tarifa <= 0) {
+                alert("Error");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Agregar Vuelo</h2>
+    <form name="formVuelo" action="procesar_vuelo.php" method="post" onsubmit="return validar_vuelo()">
+        Origen: <input type="text" name="origen" required><br>
+        Destino: <input type="text" name="destino" required><br>
+        Fecha: <input type="date" name="fecha" required><br>
+        Plazas disponibles: <input type="number" name="plazas_disponibles" required><br>
+        Precio: <input type="number" step="0.01" name="precio" required><br>
+        <input type="submit" value="Agregar Vuelo">
+    </form>
+
+    <h2>Agregar Hotel</h2>
+    <form name="formHotel" action="procesar_hotel.php" method="post" onsubmit="return validar_hotel()">
+        Nombre: <input type="text" name="nombre" required><br>
+        Ubicacion: <input type="text" name="ubicacion" required><br>
+        Habitaciones disponibles: <input type="number" name="habitaciones_disponibles" required><br>
+        Tarifa por noche: <input type="number" step="0.01" name="tarifa_noche" required><br>
+        <input type="submit" value="Agregar Hotel">
+    </form>
+</body>
+</html>
