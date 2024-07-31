@@ -8,12 +8,12 @@
             var precio = document.forms["formVuelo"]["precio"].value;
 
             if (plazas <= 0) {
-                alert("Error");
+                alert("Las plazas disponibles deben ser mayores que 0.");
                 return false;
             }
 
             if (precio <= 0) {
-                alert("Error");
+                alert("El precio debe ser mayor que 0.");
                 return false;
             }
 
@@ -25,12 +25,12 @@
             var tarifa = document.forms["formHotel"]["tarifa_noche"].value;
 
             if (habitaciones <= 0) {
-                alert("Error");
+                alert("Las habitaciones disponibles deben ser mayores que 0.");
                 return false;
             }
 
             if (tarifa <= 0) {
-                alert("Error");
+                alert("La tarifa por noche debe ser mayor que 0.");
                 return false;
             }
 
@@ -52,10 +52,11 @@
     <h2>Agregar Hotel</h2>
     <form name="formHotel" action="procesar_hotel.php" method="post" onsubmit="return validar_hotel()">
         Nombre: <input type="text" name="nombre" required><br>
-        Ubicacion: <input type="text" name="ubicacion" required><br>
+        Ubicación: <input type="text" name="ubicacion" required><br>
         Habitaciones disponibles: <input type="number" name="habitaciones_disponibles" required><br>
         Tarifa por noche: <input type="number" step="0.01" name="tarifa_noche" required><br>
         <input type="submit" value="Agregar Hotel">
     </form>
+    <p><a href="buscar_vuelos.php">Buscar Vuelo</a></p>
 </body>
 </html>
