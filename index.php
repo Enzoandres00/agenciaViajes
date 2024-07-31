@@ -2,6 +2,26 @@
 <html>
 <head>
     <title>Contenido de la Base de Datos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
     <h2>Contenido de la Base de Datos</h2>
@@ -26,7 +46,7 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<table border='1'>
+        echo "<table>
                 <tr>
                     <th>ID Vuelo</th>
                     <th>Origen</th>
@@ -37,12 +57,12 @@
                 </tr>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr>
-                    <td>" . $row["id_vuelo"] . "</td>
-                    <td>" . $row["origen"] . "</td>
-                    <td>" . $row["destino"] . "</td>
-                    <td>" . $row["fecha"] . "</td>
-                    <td>" . $row["plazas_disponibles"] . "</td>
-                    <td>" . $row["precio"] . "</td>
+                    <td>" . htmlspecialchars($row["id_vuelo"]) . "</td>
+                    <td>" . htmlspecialchars($row["origen"]) . "</td>
+                    <td>" . htmlspecialchars($row["destino"]) . "</td>
+                    <td>" . htmlspecialchars($row["fecha"]) . "</td>
+                    <td>" . htmlspecialchars($row["plazas_disponibles"]) . "</td>
+                    <td>" . htmlspecialchars($row["precio"]) . "</td>
                 </tr>";
         }
         echo "</table>";
@@ -56,7 +76,7 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<table border='1'>
+        echo "<table>
                 <tr>
                     <th>ID Hotel</th>
                     <th>Nombre</th>
@@ -66,11 +86,11 @@
                 </tr>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr>
-                    <td>" . $row["id_hotel"] . "</td>
-                    <td>" . $row["nombre"] . "</td>
-                    <td>" . $row["ubicacion"] . "</td>
-                    <td>" . $row["habitaciones_disponibles"] . "</td>
-                    <td>" . $row["tarifa_noche"] . "</td>
+                    <td>" . htmlspecialchars($row["id_hotel"]) . "</td>
+                    <td>" . htmlspecialchars($row["nombre"]) . "</td>
+                    <td>" . htmlspecialchars($row["ubicacion"]) . "</td>
+                    <td>" . htmlspecialchars($row["habitaciones_disponibles"]) . "</td>
+                    <td>" . htmlspecialchars($row["tarifa_noche"]) . "</td>
                 </tr>";
         }
         echo "</table>";
@@ -84,7 +104,7 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<table border='1'>
+        echo "<table>
                 <tr>
                     <th>ID Reserva</th>
                     <th>ID Cliente</th>
@@ -94,11 +114,11 @@
                 </tr>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr>
-                    <td>" . $row["id_reserva"] . "</td>
-                    <td>" . $row["id_cliente"] . "</td>
-                    <td>" . $row["fecha_reserva"] . "</td>
-                    <td>" . $row["id_vuelo"] . "</td>
-                    <td>" . $row["id_hotel"] . "</td>
+                    <td>" . htmlspecialchars($row["id_reserva"]) . "</td>
+                    <td>" . htmlspecialchars($row["id_cliente"]) . "</td>
+                    <td>" . htmlspecialchars($row["fecha_reserva"]) . "</td>
+                    <td>" . htmlspecialchars($row["id_vuelo"]) . "</td>
+                    <td>" . htmlspecialchars($row["id_hotel"]) . "</td>
                 </tr>";
         }
         echo "</table>";
@@ -108,5 +128,6 @@
 
     $conn->close();
     ?>
+    <p><a href="buscar_vuelos.php">Buscar Vuelo</a></p>
 </body>
 </html>
